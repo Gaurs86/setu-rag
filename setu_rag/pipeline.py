@@ -98,6 +98,10 @@ class SetuRAG:
             pivot = self.translator.to_english(query, cmi.matrix_lang)
         except Exception:
             return reranked
+        # An empty pivot means translation was unavailable (fallback translator) —
+        # keep the original ranking rather than searching on "".
+        if not (pivot or "").strip() or pivot.strip() == query.strip():
+            return reranked
         enc = self.index.embedder.encode([pivot])
         fused = self.index.search_views([{"dense": enc["dense"][0], "tokens": pivot.split()}])
         cands = [self.index.docs[d] for d, _ in fused if d in self.index.docs]

@@ -21,10 +21,17 @@ _HERE = os.path.dirname(__file__)
 _DEFAULT_FAQ = os.path.normpath(os.path.join(_HERE, "..", "data", "faqs.sample.jsonl"))
 
 def build_pipeline(faq_path: str | None = None, device: str | None = None,
-                   force_offline: bool = False, translit=None, translator=None) -> SetuRAG:
+                   force_offline: bool = False, translit=None, translator=None,
+                   enable_translation: bool = False) -> SetuRAG:
     if device:
         SETTINGS.device = device
     SETTINGS.force_offline = force_offline
+    # Optionally bring the English-pivot / matrix-canonical views and the CRAG
+    # corrective pass alive with a real IndicTrans2 translator (real-with-fallback).
+    if translator is None and enable_translation:
+        from .front_end.translate import IndicTrans2Translator
+        translator = IndicTrans2Translator(SETTINGS, device=SETTINGS.device,
+                                           force_offline=force_offline)
     faq_path = faq_path or _DEFAULT_FAQ
     records = build_records(faq_path, translit=translit, translator=translator)
     embedder = M3Embedder(SETTINGS.models["embedder"], device=SETTINGS.device,
