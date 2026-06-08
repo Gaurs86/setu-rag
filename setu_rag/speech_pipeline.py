@@ -41,7 +41,9 @@ class SpeechSetuRAG:
         self.rag = rag                       # the Round-1 text pipeline
         self.vad = VAD()
         self.asr = ASR(device=settings.device, force_offline=settings.force_offline)
-        self.slid = SpokenLID(device=settings.device)
+        # Pass asr= so SpokenLID shares the already-loaded IndicConformer instead of
+        # loading a second copy (saves ~1.2 GB VRAM on a T4).
+        self.slid = SpokenLID(device=settings.device, asr=self.asr)
         self.tts = TTS(device=settings.device, force_offline=settings.force_offline)
         self.lid = LanguageIdentifier(device=settings.device, force_offline=settings.force_offline)
 
