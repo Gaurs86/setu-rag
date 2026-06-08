@@ -89,7 +89,7 @@ from setu_rag.app import build_pipeline
 rag = build_pipeline()                      # loads sample FAQs, real models on GPU
 print(rag.answer("mera refund kab tak aayega").answer)
 ```
-The fastest path on Colab is `notebooks/setu_rag_colab_run.ipynb` (open → Run all).
+The fastest path on Colab is **[`notebooks/setu_rag.ipynb`](notebooks/setu_rag.ipynb) → Runtime → Run all** — it clones the repo, installs deps, builds the pipeline, opens a Gradio mic/upload UI for speech-to-speech, and runs the eval table.
 
 Bring the AI4Bharat front-end fully alive (each is real-with-fallback — installs enhance
 retrieval, absence degrades gracefully):

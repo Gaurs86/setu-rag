@@ -3,19 +3,19 @@
 Colab is the **primary target** for this project — everything is sized for a single **T4 (16 GB)** on the
 free tier. Internet is on by default, so there's less setup than Kaggle.
 
-The repo already ships two ready notebooks:
-- `notebooks/setu_rag_colab.ipynb` — text RAG core walkthrough
-- `notebooks/setu_rag_speech_colab.ipynb` — speech-to-speech walkthrough
+The repo ships one notebook: **`notebooks/setu_rag.ipynb`** — speech-to-speech end-to-end
+(setup → build pipeline → Gradio mic/upload UI → CS-RAGAS eval table → optional AI4Bharat upgrades).
 
-This guide covers the environment around them (GPU, getting the code in, tokens, persistence).
+This guide covers the environment around it (GPU, getting the code in, tokens, persistence).
 
 ---
 
 ## 0. TL;DR — fastest path
 Set the GPU (step 1), get the code in (step 2), then open
-**`notebooks/setu_rag_colab_run.ipynb` → Runtime → Run all.** It installs deps, builds the index from
-the sample FAQs, and answers code-switched queries with **real models** (BGE-M3 + BGE-reranker +
-Qwen2.5-3B-Instruct, all un-gated — **no HF token needed**). Everything below is the manual version.
+**`notebooks/setu_rag.ipynb` → Runtime → Run all.** It clones the repo, installs deps, builds the
+pipeline, and opens a Gradio mic/upload UI for speech-to-speech — **no HF token needed** for the
+core stack (BGE-M3 + BGE-reranker + Qwen2.5-3B-Instruct are un-gated). Everything below is the
+manual version.
 
 The core text pipeline runs end-to-end out of the box. Each model also has a graceful fallback, so it
 still runs offline/CPU (with stand-in models) for a quick structure check. The AI4Bharat front-end
