@@ -43,7 +43,7 @@ class SpeechSetuRAG:
         self.asr = ASR(device=settings.device, force_offline=settings.force_offline)
         self.slid = SpokenLID(device=settings.device)
         self.tts = TTS(device=settings.device, force_offline=settings.force_offline)
-        self.lid = LanguageIdentifier(device=settings.device)
+        self.lid = LanguageIdentifier(device=settings.device, force_offline=settings.force_offline)
 
     def answer_audio(self, audio: Audio) -> SpeechTurn:
         import time
