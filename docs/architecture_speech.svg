@@ -1,0 +1,75 @@
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<title>SETU-RAG speech-to-speech architecture with the VANI speech I/O layer</title>
+<desc>Code-switched audio is segmented, transcribed by IndicConformer ASR, language-identified acoustically and fused with text IndicLID, passed to the SETU-RAG text core, and rendered back to code-switched speech by a CMI-conditioned Indic Parler-TTS.</desc>
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c7b74"/></marker>
+<marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1D9E75"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="660" fill="#ffffff"/>
+<text x="30" y="30" font-size="20" font-weight="700" fill="#1a1a1a">SETU-RAG · Speech-to-Speech (VANI layer)</text>
+<text x="30" y="50" font-size="12.5" fill="#555555">Code-switched audio in / out · 22 Indian languages + English · turn-based, streaming-ready · Colab T4</text>
+<rect x="700" y="16" width="280" height="50" rx="8" fill="#ffffff" stroke="#D3D1C7" stroke-width="1"/>
+<rect x="713" y="27" width="15" height="12" rx="3" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="735" y="37" font-size="11" fill="#1a1a1a">New speech-layer (this round)</text>
+<rect x="713" y="46" width="15" height="12" rx="3" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text x="735" y="56" font-size="11" fill="#1a1a1a">SETU-RAG text core (Round 1)</text>
+<text x="30" y="92" font-size="11.5" font-weight="700" fill="#0F6E56">INPUT · speech understanding</text>
+<rect x="30" y="104" width="120" height="86" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="90" y="140" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1a1a1a">Audio in</text>
+<text x="90" y="158" font-size="10.5" text-anchor="middle" fill="#555555">user speech</text>
+<text x="90" y="172" font-size="9.5" font-style="italic" text-anchor="middle" fill="#555555">(code-mixed)</text>
+<rect x="178" y="104" width="150" height="86" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.7"/>
+<text x="190" y="128" font-size="12.5" font-weight="700" fill="#1a1a1a">VAD + Segment</text>
+<text x="190" y="146" font-size="10.5" fill="#555555">utterance chunking,</text>
+<text x="190" y="160" font-size="10.5" fill="#555555">16 kHz mono</text>
+<text x="190" y="180" font-size="10" font-weight="600" fill="#0F6E56">silero-vad</text>
+<rect x="356" y="104" width="166" height="86" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.7"/>
+<text x="368" y="128" font-size="12.5" font-weight="700" fill="#1a1a1a">ASR (speech to text)</text>
+<text x="368" y="146" font-size="10.5" fill="#555555">CS transcript + word</text>
+<text x="368" y="160" font-size="10.5" fill="#555555">timestamps</text>
+<text x="368" y="180" font-size="10" font-weight="600" fill="#0F6E56">IndicConformer · Whisper-v3 fb</text>
+<rect x="550" y="104" width="150" height="86" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.7"/>
+<text x="562" y="128" font-size="12.5" font-weight="700" fill="#1a1a1a">Spoken-LID</text>
+<text x="562" y="146" font-size="10.5" fill="#555555">acoustic language</text>
+<text x="562" y="160" font-size="10.5" fill="#555555">prior per segment</text>
+<text x="562" y="180" font-size="10" font-weight="600" fill="#0F6E56">IndicConformer LID</text>
+<rect x="728" y="104" width="200" height="86" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="2.1"/>
+<rect x="838" y="111" width="82" height="17" rx="8.5" fill="#1D9E75"/>
+<text x="879" y="123.5" font-size="9.5" font-weight="700" text-anchor="middle" fill="#fff">NEW</text>
+<text x="740" y="135" font-size="12.5" font-weight="700" fill="#1a1a1a">Acoustic+Lexical</text>
+<text x="740" y="151" font-size="12.5" font-weight="700" fill="#1a1a1a">LID Fusion</text>
+<text x="740" y="168" font-size="10" fill="#555555">spoken-LID + IndicLID -></text>
+<text x="740" y="182" font-size="10" fill="#555555">robust matrix language</text>
+<line x1="150" y1="147" x2="176" y2="147" stroke="#7c7b74" stroke-width="1.8" marker-end="url(#ar)"/>
+<line x1="328" y1="147" x2="354" y2="147" stroke="#1D9E75" stroke-width="1.8" marker-end="url(#arg)"/>
+<line x1="522" y1="147" x2="548" y2="147" stroke="#1D9E75" stroke-width="1.8" marker-end="url(#arg)"/>
+<line x1="700" y1="147" x2="726" y2="147" stroke="#1D9E75" stroke-width="1.8" marker-end="url(#arg)"/>
+<path d="M828,190 C828,225 500,220 500,262" fill="none" stroke="#7c7b74" stroke-width="1.8" marker-end="url(#ar)"/>
+<text x="612" y="234" font-size="10" font-style="italic" fill="#555555">transcript + matrix-lang + segments</text>
+<rect x="80" y="266" width="840" height="116" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.8"/>
+<text x="100" y="292" font-size="14.5" font-weight="700" fill="#1a1a1a">SETU-RAG text core</text>
+<text x="270" y="292" font-size="11" font-style="italic" fill="#555555">(Round 1 — see Figure 1 for the 8-stage detail)</text>
+<text x="100" y="316" font-size="11.5" fill="#555555">CMI front-end · CMI-adaptive router · transliteration-robust multi-view query</text>
+<text x="100" y="334" font-size="11.5" fill="#555555">hybrid cross-lingual retrieval + RRF · cross-lingual rerank · CRAG corrective loop</text>
+<text x="100" y="352" font-size="11.5" fill="#555555">CMI-conditioned generation · faithfulness gate</text>
+<text x="100" y="372" font-size="10.5" font-weight="600" fill="#5F5E5A">IndicLID · IndicXlit · IndicTrans2 · BGE-M3 · BGE-reranker-v2-m3 · Sarvam-1 / Aya-Expanse</text>
+<path d="M360,382 C360,410 360,410 360,432" fill="none" stroke="#7c7b74" stroke-width="1.8" marker-end="url(#ar)"/>
+<text x="372" y="410" font-size="10" font-style="italic" fill="#555555">grounded answer text (matrix-lang, CMI)</text>
+<text x="30" y="448" font-size="11.5" font-weight="700" fill="#0F6E56">OUTPUT · speech generation</text>
+<rect x="230" y="456" width="270" height="86" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="2.1"/>
+<rect x="408" y="463" width="82" height="17" rx="8.5" fill="#1D9E75"/>
+<text x="449" y="475.5" font-size="9.5" font-weight="700" text-anchor="middle" fill="#fff">NEW</text>
+<text x="242" y="482" font-size="12.5" font-weight="700" fill="#1a1a1a">CMI-Conditioned TTS</text>
+<text x="242" y="500" font-size="10.5" fill="#555555">style description = matrix lang +</text>
+<text x="242" y="514" font-size="10.5" fill="#555555">mix ratio -> spoken answer mirrors user</text>
+<text x="242" y="532" font-size="10" font-weight="600" fill="#0F6E56">Indic Parler-TTS · IndicF5</text>
+<rect x="560" y="456" width="150" height="86" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="635" y="490" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1a1a1a">Audio out</text>
+<text x="635" y="508" font-size="10.5" text-anchor="middle" fill="#555555">style-matched</text>
+<text x="635" y="522" font-size="10.5" text-anchor="middle" fill="#555555">speech reply</text>
+<line x1="500" y1="499" x2="558" y2="499" stroke="#1D9E75" stroke-width="1.8" marker-end="url(#arg)"/>
+<rect x="30" y="566" width="940" height="74" rx="10" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="46" y="589" font-size="13" font-weight="700" fill="#1a1a1a">Speech evaluation (extends CS-RAGAS)</text>
+<text x="46" y="609" font-size="11" fill="#555555">ASR: WER / CER on code-switched audio (IndicVoices CS split) · spoken-LID accuracy · LID-fusion gain</text>
+<text x="46" y="627" font-size="11" fill="#555555">TTS: naturalness/MOS · intelligibility (CER of re-ASR) · spoken CMI-alignment · end-to-end turn latency on T4</text>
+</svg>

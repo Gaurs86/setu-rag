@@ -1,0 +1,32 @@
+# Core
+torch>=2.2
+transformers>=4.44
+accelerate>=0.33
+bitsandbytes>=0.43          # 4-bit generator on T4
+sentencepiece
+# Retrieval
+FlagEmbedding>=1.2.10       # BGE-M3 + BGE-reranker-v2-m3
+faiss-cpu>=1.8             # keep dense index off the GPU
+rank-bm25>=0.2.2
+# Indic NLP (AI4Bharat)
+ai4bharat-transliteration   # IndicXlit (roman <-> native)
+# IndicLID: install from github.com/AI4Bharat/IndicLID (not on PyPI)
+# IndicTrans2 + IndicTransToolkit: github.com/AI4Bharat/IndicTrans2
+# Generation models pulled from HF: sarvamai/sarvam-1, CohereForAI/aya-expanse-8b
+# Evaluation
+ragas>=0.1.7
+datasets>=2.19
+# Serving / demo
+gradio>=4.0
+pyyaml
+
+# ----- Speech I/O layer (VANI) -----
+torchaudio>=2.2
+soundfile>=0.12
+librosa>=0.10
+# VAD: silero-vad is pulled via torch.hub (no pip needed)
+nemo_toolkit[asr]>=2.0      # IndicConformer ASR + spoken-LID (AI4Bharat)
+faster-whisper>=1.0         # Whisper-large-v3-turbo fallback/baseline
+parler-tts                  # Indic Parler-TTS (install from github: huggingface/parler-tts)
+# IndicF5 (optional HQ TTS): github.com/AI4Bharat/IndicF5
+jiwer>=3.0                  # optional: reference WER/CER (we also ship a pure-python impl)

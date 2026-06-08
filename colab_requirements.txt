@@ -1,0 +1,15 @@
+# Minimal, pip-installable, mostly un-gated stack for a RUNNABLE Colab T4 demo.
+# (torch is preinstalled on Colab.)
+transformers>=4.44
+accelerate>=0.33
+bitsandbytes>=0.43           # 4-bit generator
+sentence-transformers>=3.0   # BGE-M3 embedder + BGE-reranker-v2-m3
+faiss-cpu>=1.8
+rank-bm25>=0.2.2
+# ---- optional add-ons (uncomment as needed) ----
+# ai4bharat-transliteration   # IndicXlit roman<->native (adds the native-script view)
+# Indic LID / IndicTrans2: install from their GitHub repos for the full front-end
+# ---- speech (optional) ----
+# soundfile>=0.12
+# librosa>=0.10
+# (Whisper ASR ships inside transformers; Indic Parler-TTS: pip install git+https://github.com/huggingface/parler-tts.git)

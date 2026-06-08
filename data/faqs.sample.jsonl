@@ -1,0 +1,5 @@
+{"question": "How do I cancel my order?", "answer": "You can cancel your order from the Orders page before it ships. After shipping, please request a return instead.", "lang": "eng_Latn", "meta": {"topic": "orders"}}
+{"question": "Refund kitne din mein aata hai?", "answer": "Refund 5-7 business days mein aapke original payment method par aa jata hai.", "lang": "hin_Deva", "meta": {"topic": "refunds"}}
+{"question": "Order track kaise karu?", "answer": "Order track karne ke liye Orders page par jaayein aur Track par tap karein; aapko live status dikh jayega.", "lang": "hin_Deva", "meta": {"topic": "shipping"}}
+{"question": "Coupon apply nahi ho raha", "answer": "Ek order par ek hi coupon apply hota hai aur minimum cart value zaroori hai. Terms check karein ya naya coupon try karein.", "lang": "hin_Deva", "meta": {"topic": "payments"}}
+{"question": "Product return panna mudiyuma?", "answer": "Aam, delivery ana 7 naatkalukkul Orders page-la irundhu return request panna mudiyum.", "lang": "tam_Taml", "meta": {"topic": "returns"}}

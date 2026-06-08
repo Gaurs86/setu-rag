@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Caches / artifacts
+.pytest_cache/
+.ipynb_checkpoints/
+*.faiss
+hf_cache/
+
+# Generated audio
+reply.wav
+*.tmp.wav
+
+# OS
+.DS_Store

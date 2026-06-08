@@ -1,0 +1,4 @@
+{"question": "mera refund kab tak aayega, maine order cancel kiya tha", "ground_truth": "Refund 5-7 business days mein original payment method par aa jata hai.", "cmi": 0.33}
+{"question": "order ko track karne ka tarika batao", "ground_truth": "Orders page par jaakar Track par tap karein.", "cmi": 0.12}
+{"question": "why is my coupon not applying to the cart", "ground_truth": "Only one coupon per order and a minimum cart value is required.", "cmi": 0.0}
+{"question": "return panna epdi, delivery aagiduchu", "ground_truth": "Delivery ana 7 naatkalukkul Orders page-la return request pannunga.", "cmi": 0.4}
