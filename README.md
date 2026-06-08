@@ -61,12 +61,12 @@ setu-rag/
 ├── README.md  requirements.txt  config.yaml
 ├── docs/                      architecture.svg / .png
 ├── data/                      faqs.sample.jsonl  eval.sample.jsonl
-├── scripts/                   build_index.py  serve.py
+├── scripts/                   build_index.py  serve.py  serve_voice.py  run_eval.py
 ├── notebooks/                 setu_rag_colab.ipynb
 └── setu_rag/
     ├── config.py              model registry · 22-lang table · T4 settings
     ├── pipeline.py            end-to-end orchestration
-    ├── front_end/             language_id.py · transliterate.py · cmi.py
+    ├── front_end/             language_id.py · transliterate.py · translate.py · cmi.py
     ├── router/                adaptive_router.py        [novel #1]
     ├── query/                 multi_view.py             [novel #2]
     ├── retrieval/             embedder.py · index.py (RRF) · kb_ingest.py
@@ -91,13 +91,31 @@ print(rag.answer("mera refund kab tak aayega").answer)
 ```
 The fastest path on Colab is `notebooks/setu_rag_colab_run.ipynb` (open → Run all).
 
+Bring the AI4Bharat front-end fully alive (each is real-with-fallback — installs enhance
+retrieval, absence degrades gracefully):
+```bash
+pip install ai4bharat-transliteration                 # IndicXlit native-script view
+pip install git+https://github.com/AI4Bharat/IndicLID.git   # token LID (all 22 langs, romanized)
+pip install IndicTransToolkit                          # IndicTrans2 pivots (+ accept model licenses)
+```
+```python
+from setu_rag.app import build_pipeline
+rag = build_pipeline(enable_translation=True)          # turns on the English-pivot / matrix-canonical views
+```
+Run the CS-RAGAS evaluation table over the sample code-switched pairs:
+```bash
+python scripts/run_eval.py --offline   # deterministic, no downloads
+python scripts/run_eval.py             # real models if available
+```
+
 **Running on Colab?** See [`COLAB.md`](COLAB.md) — pick a T4 GPU and open `notebooks/setu_rag_colab_run.ipynb` → Run all. No HF token needed for the core text pipeline.
 
 **Running on Kaggle?** See [`KAGGLE.md`](KAGGLE.md) — turn Internet **On**, add the code as a Dataset (or git clone), set an `HF_TOKEN` secret, and you get 2× T4 (32 GB). Notebook: `notebooks/setu_rag_kaggle.ipynb`.
 
-Fill in the `# TODO` model-loading stubs (each marked and documented) to make the pipeline live.
-The pure-logic modules — `cmi.py`, `index.py` (RRF), `multi_view.py`, `adaptive_router.py`,
-`generator.build_prompt`, `eval/cs_metrics.py` — already run.
+Every model wrapper is **real-with-fallback** — no stubs to fill. With the deps + a GPU it loads
+the real model; offline/CPU (or `force_offline=True`) it uses a deterministic stand-in so the whole
+pipeline still runs. The AI4Bharat front-end (IndicLID, IndicXlit, IndicTrans2) and the speech ASR
+(IndicConformer → Whisper) are wired the same way: install to upgrade, skip to degrade gracefully.
 
 ## T4 memory policy
 

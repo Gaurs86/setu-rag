@@ -78,11 +78,18 @@ model's license on its HF page once.
 ```python
 !pip -q install -r colab_requirements.txt    # minimal, un-gated, runs the text pipeline
 ```
-That's all you need for the core system. Optional extras (install only if you use them):
+That's all you need for the core system. Optional extras (each is **real-with-fallback** — install
+to upgrade a stage, skip to let it degrade gracefully):
 ```python
-# !pip -q install ai4bharat-transliteration                    # native-script query view
+# !pip -q install ai4bharat-transliteration                       # IndicXlit native-script view
+# !pip -q install git+https://github.com/AI4Bharat/IndicLID.git   # token LID (all 22 langs, romanized)
+# !pip -q install IndicTransToolkit                               # IndicTrans2 English-pivot views
 # !pip -q install soundfile librosa git+https://github.com/huggingface/parler-tts.git   # speech out
-# IndicConformer (NeMo) / IndicTrans2 toolkit / IndicLID: per their GitHub READMEs
+# IndicConformer (NeMo) ASR: per its GitHub/HF README (Whisper is the auto-fallback)
+```
+Then enable the translation-pivot views explicitly:
+```python
+rag = build_pipeline(enable_translation=True)   # English-pivot + matrix-canonical views
 ```
 
 ---
@@ -111,6 +118,12 @@ print("retrieved:", tr.retrieved)
 ```
 Or from a terminal cell: `!python scripts/build_index.py` (add `--offline` for the no-GPU check).
 Your own KB: `build_pipeline(faq_path="/content/my_faqs.jsonl")` (one `{"question","answer","lang"}` per line).
+
+**Evaluation table** (CS-RAGAS + WER/CER over the sample code-switched pairs):
+```python
+!python scripts/run_eval.py --offline    # deterministic, no downloads
+!python scripts/run_eval.py              # real models if available
+```
 
 ---
 
