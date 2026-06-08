@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Optional
 from .config import SETTINGS
-from .speech.audio_io import Audio, load as load_audio, save as save_audio
+from .speech.audio_io import Audio, load as load_audio, save as save_audio, resample, TARGET_SR
 from .speech.vad import VAD
 from .speech.asr import ASR
 from .speech.spoken_lid import SpokenLID
@@ -50,6 +50,10 @@ class SpeechSetuRAG:
     def answer_audio(self, audio: Audio) -> SpeechTurn:
         import time
         turn = SpeechTurn()
+
+        # 0) normalise to 16 kHz mono — mic/upload audio arrives at 44.1/48 kHz,
+        #    and the whole stack (VAD, ASR, spoken-LID) assumes 16 kHz.
+        audio = resample(audio, TARGET_SR)
 
         # 1) segment
         t0 = time.time()

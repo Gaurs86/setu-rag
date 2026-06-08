@@ -106,11 +106,25 @@ class ASR:
                 wav = wav.cuda()
             with torch.no_grad():
                 out = self._ic(wav, lang, "ctc")
-            text = (out if isinstance(out, str) else str(out)).strip()
+            text = self._coerce_text(out).strip()
             return ASRResult(text=text, acoustic_lang=fam or None)
         except Exception as e:
             print(f"[asr] IndicConformer transcribe failed ({type(e).__name__}); empty transcript.")
             return ASRResult(text="")
+
+    @staticmethod
+    def _coerce_text(out) -> str:
+        """IndicConformer may return a str, a 1-element list/tuple, or a dict —
+        extract the transcript without leaking a Python repr into the text."""
+        if isinstance(out, str):
+            return out
+        if isinstance(out, (list, tuple)):
+            return " ".join(ASR._coerce_text(o) for o in out)
+        if isinstance(out, dict):
+            for k in ("text", "transcription", "transcript"):
+                if k in out:
+                    return ASR._coerce_text(out[k])
+        return str(out)
 
     # ---- Whisper (fallback) -----------------------------------------------
     def _transcribe_whisper(self, audio: Audio, lang_hint: Optional[str]) -> ASRResult:

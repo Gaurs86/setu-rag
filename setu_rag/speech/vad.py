@@ -47,9 +47,11 @@ class VAD:
         """Return silero speech timestamps (list of {start, end} sample indices)."""
         import torch
         get_speech_timestamps = self._utils[0]
+        # silero supports 8 kHz / 16 kHz; the pipeline normalises to 16 kHz upstream.
+        sr = audio.sr if audio.sr in (8000, 16000) else TARGET_SR
         wav = torch.from_numpy(audio.samples)
         return get_speech_timestamps(
-            wav, self._model, sampling_rate=TARGET_SR,
+            wav, self._model, sampling_rate=sr,
             threshold=self.threshold,
             min_silence_duration_ms=self.min_silence_ms)
 
