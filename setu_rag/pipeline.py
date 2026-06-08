@@ -45,7 +45,8 @@ class SetuRAG:
         self.index = index
         self.translator = translator
         self.lid = LanguageIdentifier(device=settings.device, force_offline=settings.force_offline)
-        self.translit = transliterator if transliterator is not None else Transliterator(device=settings.device)
+        self.translit = transliterator if transliterator is not None else \
+            Transliterator(device=settings.device, force_offline=settings.force_offline)
         self.mvq = MultiViewBuilder(self.translit, translator)
         self.reranker = CrossReranker(device=settings.device, force_offline=settings.force_offline)
         self.generator = Generator(settings)
