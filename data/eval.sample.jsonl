@@ -1,4 +1,5 @@
-{"question": "mera refund kab tak aayega, maine order cancel kiya tha", "ground_truth": "Refund 5-7 business days mein original payment method par aa jata hai.", "cmi": 0.33}
-{"question": "order ko track karne ka tarika batao", "ground_truth": "Orders page par jaakar Track par tap karein.", "cmi": 0.12}
-{"question": "why is my coupon not applying to the cart", "ground_truth": "Only one coupon per order and a minimum cart value is required.", "cmi": 0.0}
-{"question": "return panna epdi, delivery aagiduchu", "ground_truth": "Delivery ana 7 naatkalukkul Orders page-la return request pannunga.", "cmi": 0.4}
+{"question": "mera refund kab tak aayega, maine order cancel kiya tha", "ground_truth": "Refund 5-7 business days mein aapke original payment method par aa jata hai.", "cmi": 0.33, "topic": "refunds"}
+{"question": "order ko track karne ka tarika batao", "ground_truth": "Order track karne ke liye Orders page par jaayein aur Track par tap karein.", "cmi": 0.12, "topic": "shipping"}
+{"question": "why is my coupon not applying to the cart", "ground_truth": "Ek order par ek hi coupon apply hota hai aur minimum cart value zaroori hai.", "cmi": 0.0, "topic": "payments"}
+{"question": "return panna epdi, delivery aagiduchu", "ground_truth": "Aam, delivery ana 7 naatkalukkul Orders page-la irundhu return request panna mudiyum.", "cmi": 0.4, "topic": "returns"}
+{"question": "order cancel karna hai, kaise karu", "ground_truth": "You can cancel your order from the Orders page before it ships.", "cmi": 0.2, "topic": "orders"}
