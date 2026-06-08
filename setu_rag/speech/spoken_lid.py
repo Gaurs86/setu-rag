@@ -47,7 +47,7 @@ class SpokenLID:
             self.live = True
             print(f"[spoken_lid] loaded {self.model_id}")
         except Exception as e:
-            print(f"[spoken_lid] IndicConformer LID unavailable ({type(e).__name__}); "
+            print(f"[spoken_lid] IndicConformer LID unavailable ({type(e).__name__}: {e}); "
                   "returning fixed Hindi prior.")
             self._m = "fallback"; self.live = False
         return self

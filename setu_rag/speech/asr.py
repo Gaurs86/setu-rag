@@ -71,7 +71,7 @@ class ASR:
             print(f"[asr] loaded {self.model_id} (IndicConformer)")
             return self
         except Exception as e:
-            print(f"[asr] IndicConformer unavailable ({type(e).__name__}); trying Whisper fallback.")
+            print(f"[asr] IndicConformer unavailable ({type(e).__name__}: {e}); trying Whisper fallback.")
         # 2) fallback: Whisper
         try:
             import torch
